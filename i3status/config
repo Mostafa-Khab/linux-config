@@ -1,0 +1,32 @@
+general {
+        colors = true
+        color_good = "#98971a"
+        color_bad = "#cc241d"
+        color_degraded = "#fabd2f"
+        interval = 2
+}
+
+order += "volume master"
+order += "disk /"
+order += "tztime local"
+order += "wireless wlan0"
+
+#order += "load"
+#order += "cpu_usage"
+#order += "ethernet enp3s0"
+
+disk "/" {
+        format = " %avail"
+}
+
+wireless wlan0 {
+        #format_up = " W: (%quality at %essid) %ip "
+
+        format_up = "  "
+        format_down = " 󰖪 "
+}
+
+tztime local {
+        # termsyn font
+        format = "󰔠 %Y-%m-%d %H:%M"
+}
