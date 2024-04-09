@@ -13,6 +13,10 @@ cp -r i3/ $HOME/.config
 cp -r i3status/ $HOME/.config
 cp .bashrc $HOME
 cp .tmux.conf $HOME
+cp -r oh-my-posh-theme/ $HOME/.config/
+
+#uncomment if you use xterm as your terminal
+#xrdb -merge .Xresources
 
 #compile main.cpp in exists as exists (g++ main.cpp -o exists)
 #compile main.cpp in git-branch as git-prompt (used by config.fish)
@@ -23,4 +27,3 @@ cp .tmux.conf $HOME
 #if you have oh my posh
 #cp -r oh-my-posh-theme $HOME/.config/
 
-xrdb -merge .Xresources
