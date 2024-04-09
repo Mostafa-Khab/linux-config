@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+
+int main(int argc, char* argv[])
+{
+  bool untracked = false;
+  std::string branch;
+  std::string line;
+  while(std::getline(std::cin, line))
+  {
+    if(line.find("fatal"))
+      return -1;
+
+    if(line.find("##") != std::string::npos)
+    {
+      for(int i = 0; i < line.size(); ++i)
+      {
+        if(line[i] == '.')
+        {
+          branch = line.substr(3, i);
+          break;
+        }
+      }
+    }
+
+    if(line.find("??") != std::string::npos)
+    {
+       untracked = true;
+    }
+
+  }
+
+  std::string color = (untracked)? "\033[31m" : "\033[33m";
+  std::cout << color << "(  " + branch + ")\033[0m";
+  return 0;
+}
