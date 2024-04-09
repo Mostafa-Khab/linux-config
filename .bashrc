@@ -123,7 +123,7 @@ fi
 #remember to install oh-my-posh from their website (you will need a nerd font).
 TTY=$(w | grep tty[0-9] --only-match | grep [0-9] --only-match)
 if [ $TTY == 7 ]; then
-  eval "$(oh-my-posh init bash --config /home/sasa/Downloads/json/hunk.omp.json)"
+  eval "$(oh-my-posh init bash --config $HOME/.config/oh-my-posh-theme/hunk.omp.json)"
 fi
 
 export PATH="$PATH:/opt/nvim-linux64/bin"

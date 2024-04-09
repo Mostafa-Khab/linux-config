@@ -23,13 +23,8 @@ if status is-interactive
       exec tmux
     end
 
-    #function fish_git_prompt 
-    #  printf "$($HOME/Projects/learn/path_exists/git-branch/./main)"
-    #end
-
-    #function fish_prompt -d "write out the prompt"
-    #  printf "\033[33m$USER\033[0m in \033[35m$(dirs)\033[0m $(fish_git_prompt)\n\033[01;36m$USER\033[0m: "
-    #end
+    #NOTE: you need to install oh my posh (change if required [[likely]])
+    #command /usr/local/bin/oh-my-posh init fish --config $HOME/.config/oh-my-posh-theme/hunk.omp.json | source
 
     alias note='vifm /home/sasa/notes'
     alias bat='batcat'
@@ -51,7 +46,7 @@ if status is-interactive
     alias build="tmux splitw -p 35 -c build 'make | less'"
     alias run="tmux splitw -p 35 -c build './main'"
 
-    #DO NOT TRY TO HAVE SUCK BAD HABITS!!
+    #DO NOT TRY TO HAVE SUCH BAD HABITS!!
     #alias fuck="clear && echo you idiot, stop cursing me, you are the only fool!!"
     #alias fuckoff="sudo shutdown -P +0"
 end

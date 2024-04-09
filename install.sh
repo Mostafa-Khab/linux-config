@@ -14,4 +14,13 @@ cp -r i3status/ $HOME/.config
 cp .bashrc $HOME
 cp .tmux.conf $HOME
 
+#compile main.cpp in exists as exists (g++ main.cpp -o exists)
+#compile main.cpp in git-branch as git-prompt (used by config.fish)
+#install both of them to /usr/local/bin (you can uncomment the 2 lines under this one)
+#install exists \usr\loca\bin
+#install git-prompt \usr\loca\bin
+
+#if you have oh my posh
+#cp -r oh-my-posh-theme $HOME/.config/
+
 xrdb -merge .Xresources
