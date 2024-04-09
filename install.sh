@@ -5,6 +5,8 @@
 #this configuration uses xterm as primary terminal with gruvbox like colorscheme
 #some apps needs other apps like vifm which you can find in vifmrc in programs section
 
+#set TERM variable to screen-256color (xterm-256color in case you use xterm)
+
 cp .vimrc $HOME
 cp vifmrc $HOME/.config/vifm/
 cp picom.conf $HOME/.config
