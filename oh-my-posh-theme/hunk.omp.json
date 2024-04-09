@@ -23,7 +23,7 @@
             "style": "full"
           },
           "style": "powerline",
-          "template": "{{ .Path }} ",
+          "template": " {{ .Path }} ",
           "type": "path"
         },
         {
