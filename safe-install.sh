@@ -7,15 +7,11 @@
 
 #set TERM variable to screen-256color (xterm-256color in case you use xterm)
 
-cp -n .vimrc $HOME
+cp -n .vimrc .bashrc .tmux.conf $HOME
+cp -n ftplugin/cpp.vim ftplugin/tex.vim $HOME/.vim/ftplugin/
 cp -n vifmrc $HOME/.config/vifm/
-cp -n picom.conf $HOME/.config
 cp -n config.fish $HOME/.config/fish
-cp -n -r i3/ $HOME/.config
-cp -n -r i3status/ $HOME/.config
-cp -n .bashrc $HOME
-cp -n .tmux.conf $HOME
-cp -n -r oh-my-posh-theme/ $HOME/.config/
+cp -n -r picom.conf i3/ i3status/ oh-my-posh-theme/ $HOME/.config
 
 #uncomment if you use xterm as your terminal
 #xrdb -merge .Xresources
