@@ -14,6 +14,7 @@ set scrolloff=12
 set sts=2
 
 "RUN :PlugInstall (you must have vim-plug configured to have to command)
+"coc-nvim requires node-js. install it (modern version required I think)
 call plug#begin("$HOME/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'} 
   Plug 'morhetz/gruvbox'

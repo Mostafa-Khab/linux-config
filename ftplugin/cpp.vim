@@ -3,8 +3,6 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-echo "loading cpp config"
-
 set path+=/usr/include/x86_64-linux-gnu/
 set path+=/usr/include/c++/12/
 set path+=/usr/local/include/
