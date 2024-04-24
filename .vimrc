@@ -1,3 +1,37 @@
+function! Guard_func()
+  let base_name = expand("%:t:r")
+  let inc_guard = base_name . '_hpp'
+  call append(0, "#ifndef " . inc_guard)
+  call append(1, "#define " . inc_guard)
+  call append(line("$"), "#endif /* !" . inc_guard . " */")
+  call cursor(1, 8)
+  exe 'normal g~$ kk'
+  call cursor(2, 8)
+  exe 'normal g~$ kk'
+  call cursor(line("$"), 8)
+  exe 'normal g~$ kk'
+endfunction
+
+command! Guard call Guard_func()
+
+function Date_func()
+  call cursor(3, 0)
+  read !date 
+  normal kJ
+endfunction
+
+function! Header_start()
+  call Guard_func()
+  call append(0, "/*********************************")
+  call append(1, " * author     : mostafa khaled")
+  call append(2, " * date       : ")
+  call Date_func()
+  call append(3, " * desc       : ")
+  call append(4, " ********************************/")
+endfunction
+
+autocmd BufNewFile *.hpp,*.h,*.hh call Header_start()
+
 filetype detect
 filetype plugin indent on
 syntax on
@@ -13,8 +47,6 @@ set guifont=hack:14
 set scrolloff=12
 set sts=2
 
-"RUN :PlugInstall (you must have vim-plug configured to have to command)
-"coc-nvim requires node-js. install it (modern version required I think)
 call plug#begin("$HOME/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'} 
   Plug 'morhetz/gruvbox'
@@ -25,8 +57,7 @@ call plug#end()
 colorscheme gruvbox
 
 if(&filetype == 'c' || &filetype == 'cpp')
-  autocmd BufNewFile *.hpp,*.h,*.hh call Header_start()
-
+    
   call plug#begin("$HOME/.vim/plugged")
     Plug 'bfrg/vim-cpp-modern'
     Plug 'Shougo/neosnippet.vim'
