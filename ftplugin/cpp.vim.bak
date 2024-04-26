@@ -40,11 +40,10 @@ function! Execute()
   if (filereadable(expand('%:p:r')))
     exec "!%:p:r"
   elseif (filereadable(expand('%:p:h').'/build/'.expand('%:r')))
-    exec "silent !tmux splitw -p 25 -c build ./%:r"
+    exec "!tmux splitw -p 20 -c build %:p:r | less"
   else
     echoerr "no executable found"
   endif
-  redraw!
 endfunction
 
 function! Compile_Execute()
