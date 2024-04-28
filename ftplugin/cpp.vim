@@ -19,7 +19,7 @@ inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
 inoremap " ""<Left>
-nnoremap <F1> :CocCommand clangd.switchSourceHeader<CR>
+noremap <F2> <Esc>:CocCommand clangd.switchSourceHeader<CR>
 
 if (!filereadable('makefile') && !filereadable('Makefile'))
     setlocal makeprg=g++\ '%:p'\ -o\ '%:p:r'
@@ -29,18 +29,17 @@ if (filereadable('build/makefile') || filereadable('build/Makefile'))
   setlocal makeprg=make\ -C\ build/
 endif
 
-
-
 function! Compile()
   exec "w | silent make"
   redraw!
+  cwindow
 endfunction
 
 function! Execute()
   if (filereadable(expand('%:p:r')))
     exec "!%:p:r"
   elseif (filereadable(expand('%:p:h').'/build/'.expand('%:r')))
-    exec "silent !tmux splitw -p 25 -c build ./%:r"
+    exec "silent !tmux splitw -p 25 -c build './%:r'"
   else
     echoerr "no executable found"
   endif
@@ -52,11 +51,9 @@ function! Compile_Execute()
   call Execute()
 endfunction
 
-nnoremap <F9> :call Compile()<CR>
-inoremap <F9> <Esc>:call Compile()<CR>
+noremap <F9>  <Esc>:call Compile()<CR>
+noremap <F10> <Esc>:call Execute()<CR>
+noremap <F11> <Esc>:call Compile_Execute()<CR>
 
-nnoremap <F10> :call Execute()<CR>
-inoremap <F10> <Esc>:call Execute()<CR>
-
-nnoremap <F11> :call Compile_Execute()<CR>
-inoremap <F11> <Esc>:call Compile_Execute()<CR>
+inoremap <M-;> <Esc>mzA;<Esc>`za
+nnoremap <M-;> mzA;<Esc>`z
