@@ -24,8 +24,8 @@ XTerm*color8: #928374
 XTerm*color1: #cc241d
 XTerm*color9: #fb4934
 !DarkGreen + Green
-XTerm*color2: #98971a
-XTerm*color10: #b8bb26
+XTerm*color2: #98d71a
+XTerm*color10: #b8dd26
 !DarkYellow + Yellow
 XTerm*color3: #d79921
 XTerm*color11: #fabd2f
