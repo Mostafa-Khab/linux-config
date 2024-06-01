@@ -53,20 +53,21 @@ call plug#begin("$HOME/.vim/plugged")
   Plug 'vifm/vifm.vim'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'tikhomirov/vim-glsl'
-call plug#end()
-colorscheme gruvbox
-
-if(&filetype == 'c' || &filetype == 'cpp')
-    
-  call plug#begin("$HOME/.vim/plugged")
+  if(&filetype == 'cpp')
     Plug 'bfrg/vim-cpp-modern'
     Plug 'Shougo/neosnippet.vim'
     Plug 'Shougo/neosnippet-snippets'
-  call plug#end()
+  endif
+call plug#end()
+colorscheme gruvbox
+
+if(&filetype == 'cpp')
+  source $HOME/.vim/autoload/coc-config.vim
 
   imap <C-k>    <Plug>(neosnippet_expand_or_jump)
   smap <C-k>    <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>    <Plug>(neosnippet_expand_target)
+
 endif
 
 autocmd! BufNewFile,BufRead *.vert,*.frag set ft=glsl
@@ -102,5 +103,18 @@ nnoremap L $
 nnoremap n nzz
 nnoremap N Nzz
 
+nnoremap <M-j> ]]zz
+nnoremap <M-k> [[zz
+
+nnoremap <C-j> 10j
+nnoremap <C-k> 10k
+
+nnoremap ,e :Explore<CR>
+
 command! -nargs=0 Sw w !sudo tee % > /dev/null
 command! Mingw read $HOME/mingw-includes.txt
+
+
+
+"autocmd VimEnter * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Escape'
+"autocmd VimLeave * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Caps_Lock'

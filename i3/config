@@ -35,10 +35,13 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # setup the backgrount using nitrogen
-exec_always --no-startup-id nitrogen --restore
+exec --no-startup-id nitrogen --restore
 
 #opacity using compton [update] picom instead
 exec_always --no-startup-id picom
+
+#set the repeat rate for fast movement
+exec_always --no-startup-id xset r rate 190 45
 
 #language switch
 exec_always --no-startup-id setxkbmap -model pc104 -layout us,ara -option grp:alt_shift_toggle
@@ -58,7 +61,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xterm
 bindsym $mod+t exec xterm
 bindsym $mod+b exec rofi -show drun
 bindsym $mod+m exec screengrab
@@ -75,10 +78,10 @@ bindsym $mod+d exec --no-startup-id dmenu_run -nb '#3c3836' -nf '#fbf1c7' -sb '#
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -87,10 +90,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -99,7 +102,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+Shift+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -168,9 +171,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-client.focused          #665c54 #665c54 #eddbb2 #2e9ef4   #665c54
+#class                  border  bg      text    indictor  child_border
+client.focused          #fb4934 #665c54 #eddbb2 #2e9ef4   #665c54
 client.focused_inactive #282828 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #3c3836 #3c3836 #a89984 #292d2e   #222222
+client.unfocused        #fe8019 #3c3836 #a89984 #292d2e   #222222
 client.urgent           #cc241d #cc241d #ebdbb2 #cc241d   #cc241d
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
@@ -183,10 +187,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -206,17 +210,26 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+  position top
+  status_command i3status /home/sasa/.config/i3status/config
+
   colors { 
     background #3c3836
     statusline #ebdbb2
-    separator  #666666
+    separator  #fb4934
 
     focused_workspace  #458588 #458588 #ebdbb2
     active_workspace   #83a598 #83a598 #ebdbb2
     inactive_workspace #504945 #504945 #ebdbb2
     urgent_workspace   #cc241d #cc241d #504945
   }
-        status_command i3status /home/sasa/.config/i3status/config
 }
 
-default_border normal
+default_border pixel 2
+assign [class="Chromium"] 9
+
+bindsym $mode+Shift+b border toggle
+
+for_window [class="gfx-test"] floating enable
+
+bindsym $mod+c bar mode toggle

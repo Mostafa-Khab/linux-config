@@ -57,3 +57,6 @@ noremap <F11> <Esc>:call Compile_Execute()<CR>
 
 inoremap <M-;> <Esc>mzA;<Esc>`za
 nnoremap <M-;> mzA;<Esc>`z
+
+noremap <M-h> <Esc>:cprev<CR>
+noremap <M-l> <Esc>:cnext<CR>

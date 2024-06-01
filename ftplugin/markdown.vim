@@ -4,6 +4,7 @@ endif
 let b:did_ftplugin = 1
 
 setlocal makeprg=pandoc\ '%:p'\ -o\ '%:p:r'.pdf
+setlocal spell
 
 function! CompileMD()
   exec "write | silent make"
@@ -21,20 +22,11 @@ function! CompileMD_PreviewPDF()
 endfunction
 
 
-function! Araby()
-  if(&arabic == 'noarabic')
-    setlocal arabic
-  else
-    setlocal noarabic
-  endif
-endfunction
+hi SpellBad ctermbg=9 ctermfg=15
 
-nnoremap <F9>  :call CompileMD()<CR>
-nnoremap <F10> :call PreviewPDF()<CR>
-nnoremap <F11> :call CompileMD_PreviewPDF()<CR>
-nnoremap <F12> :call Araby()<CR>
+noremap <F2>  <Esc>:set spell!<CR>
 
-inoremap <F9>  <C-o>:call CompileMD()<CR>
-inoremap <F10> <C-o>:call PreviewPDF()<CR>
-inoremap <F11> <C-o>:call CompileMD_PreviewPDF()<CR>
-inoremap <F12> <C-o>:call Araby()<CR>
+noremap <F9>  <Esc>:call CompileMD()<CR>
+noremap <F10> <Esc>:call PreviewPDF()<CR>
+noremap <F11> <Esc>:call CompileMD_PreviewPDF()<CR>
+noremap <F12> <Esc>:set arabic!<CR>

@@ -6,6 +6,9 @@ let b:did_ftplugin = 1
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
+
+compiler tex
+
 set makeprg=pdflatex\ -interaction=nonstopmode\ -synctex=-1\ '%:p'\ 
 
 function! Clean()
@@ -21,14 +24,7 @@ endfunction
 function! CompileTex()
   exec "write | silent make"
   redraw!
-endfunction
-
-function! Araby()
-  if (&arabic == 'noarabic')
-    setlocal arabic
-  else
-    setlocal noarabic
-  endif
+  cwindow
 endfunction
 
 function! CompileTex_Execute()
@@ -40,9 +36,9 @@ endfunction
 nnoremap <F9>  :call<Space>CompileTex()<CR>
 nnoremap <F10> :call<Space>OpenPDF()<CR>
 nnoremap <F11> :call<Space>CompileTex_Execute()<CR>
-nnoremap <F12> :call<Space>Araby()<CR>
+nnoremap <F12> :set<Space>arabic!<CR>
 
 inoremap <F9>  <Esc>:call<Space>CompileTex()<CR>
 inoremap <F10> <Esc>:call<Space>OpenPDF()<CR>
 inoremap <F11> <Esc>:call<Space>CompileTex_Execute()<CR>
-inoremap <F12> <Esc>:call<Space>Araby()<CR>
+inoremap <F12> <Esc>:set<Space>arabic!<CR>
