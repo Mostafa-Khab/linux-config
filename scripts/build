@@ -1,0 +1,2 @@
+#!/bin/bash
+tmux splitw -p 35 -c build "make ${@@Q} | less -R" && clear
