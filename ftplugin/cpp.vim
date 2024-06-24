@@ -20,6 +20,7 @@ inoremap [ []<Left>
 inoremap { {}<Left>
 inoremap " ""<Left>
 noremap <F2> <Esc>:CocCommand clangd.switchSourceHeader<CR>
+noremap <F3> <Esc>:CocCommand document.toggleInlayHint<CR>
 
 if (!filereadable('makefile') && !filereadable('Makefile'))
     setlocal makeprg=g++\ '%:p'\ -o\ '%:p:r'
@@ -57,6 +58,8 @@ noremap <F11> <Esc>:call Compile_Execute()<CR>
 
 inoremap <M-;> <Esc>mzA;<Esc>`za
 nnoremap <M-;> mzA;<Esc>`z
+
+inoremap <M-,> <><Left>
 
 noremap <M-h> <Esc>:cprev<CR>
 noremap <M-l> <Esc>:cnext<CR>
