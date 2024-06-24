@@ -35,6 +35,7 @@ autocmd BufNewFile *.hpp,*.h,*.hh call Header_start()
 filetype detect
 filetype plugin indent on
 syntax on
+
 set nocompatible
 set ai si
 set relativenumber
@@ -46,6 +47,7 @@ set background=dark
 set guifont=hack:14
 set scrolloff=12
 set sts=2
+set wildcharm=<C-z>
 
 call plug#begin("$HOME/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'} 
@@ -59,7 +61,13 @@ call plug#begin("$HOME/.vim/plugged")
     Plug 'Shougo/neosnippet-snippets'
   endif
 call plug#end()
+
 colorscheme gruvbox
+
+highlight gfxNamespace guifg=#ebdbb2
+highlight gfxClass guifg=#689d6a
+highlight gfxFunction guifg=#98971a
+highlight gfxVariable guifg=#458588
 
 if(&filetype == 'cpp')
   source $HOME/.vim/autoload/coc-config.vim
@@ -103,8 +111,11 @@ nnoremap L $
 nnoremap n nzz
 nnoremap N Nzz
 
-nnoremap <M-j> ]]zz
-nnoremap <M-k> [[zz
+nnoremap <C-j> ]]zz
+nnoremap <C-k> [[zz
+
+nnoremap <M-j> }zz
+nnoremap <M-k> {zz
 
 nnoremap <C-j> 10j
 nnoremap <C-k> 10k
@@ -115,6 +126,12 @@ command! -nargs=0 Sw w !sudo tee % > /dev/null
 command! Mingw read $HOME/mingw-includes.txt
 
 
+nnoremap <F3> :CocCommand document.toggleInlayHint<CR>
 
+nnoremap ,f :<C-f>
+
+"browsing a file in subdirectory
+nnoremap ,b :e **/*<C-z><S-Tab>
+set wildignore+=build/*
 "autocmd VimEnter * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Escape'
 "autocmd VimLeave * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Caps_Lock'

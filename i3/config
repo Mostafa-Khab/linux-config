@@ -231,5 +231,7 @@ assign [class="Chromium"] 9
 bindsym $mode+Shift+b border toggle
 
 for_window [class="gfx-test"] floating enable
+for_window [class="feh"] floating enable
+for_window [title="gfx-test"] floating enable
 
 bindsym $mod+c bar mode toggle
