@@ -42,3 +42,6 @@ XTerm*color14: #8ec07c
 XTerm*color7: #a89984
 XTerm*color15: #ebdbb2
 
+Sxiv*background: #ebdbb2
+Sxiv*foreground: #3c3836
+Sxiv*font: Hack-16;

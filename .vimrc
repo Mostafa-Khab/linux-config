@@ -117,6 +117,11 @@ nnoremap <C-k> [[zz
 nnoremap <M-j> }zz
 nnoremap <M-k> {zz
 
+nnoremap <M-i> ".P
+nnoremap <M-a> ".p
+inoremap <M-i> <C-r>.
+inoremap <M-a> <C-r>.
+
 nnoremap <C-j> 10j
 nnoremap <C-k> 10k
 
@@ -133,5 +138,8 @@ nnoremap ,f :<C-f>
 "browsing a file in subdirectory
 nnoremap ,b :e **/*<C-z><S-Tab>
 set wildignore+=build/*
+
+nnoremap <C-h> :bprev<CR>
+nnoremap <C-l> :bnext<CR>
 "autocmd VimEnter * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Escape'
 "autocmd VimLeave * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Caps_Lock'

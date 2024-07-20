@@ -39,8 +39,8 @@ endfunction
 function! Execute()
   if (filereadable(expand('%:p:r')))
     exec "!%:p:r"
-  elseif (filereadable(expand('%:p:h').'/build/'.expand('%:r')))
-    exec "silent !tmux splitw -p 25 -c build './%:r'"
+  elseif (filereadable(expand('%:p:h').'/build/main'))
+    exec "silent !tmux splitw -p 25 -c build './main'"
   else
     echoerr "no executable found"
   endif
