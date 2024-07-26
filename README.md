@@ -8,3 +8,4 @@
 ![build c++ within terminal and run](imgs/run_build.png)
 ![build c++ within vim and run](imgs/vim_build.png)
 ![build latex within vim and run + zathura lookup](imgs/vim_ztex.png)
+![sample gif](imgs/rice.gif)
