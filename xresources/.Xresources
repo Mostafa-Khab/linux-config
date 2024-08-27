@@ -1,0 +1,29 @@
+!new theme setting [gotham]
+
+XTerm*foreground:   #98d1ce
+XTerm*background:   #0a0f14
+XTerm*cursorColor:  #98d1ce
+
+XTerm*color0:       #0a0f14
+XTerm*color8:       #10151b
+
+XTerm*color1:       #c33027
+XTerm*color9:       #d26939
+
+XTerm*color2:       #26a98b
+XTerm*color10:      #081f2d
+
+XTerm*color3:       #edb54b
+XTerm*color11:      #245361
+
+XTerm*color4:       #195465
+XTerm*color12:      #093748
+
+XTerm*color5:       #4e5165
+XTerm*color13:      #888ba5
+
+XTerm*color6:       #33859d
+XTerm*color14:      #599caa
+
+XTerm*color7:       #98d1ce
+XTerm*color15:      #d3ebe9

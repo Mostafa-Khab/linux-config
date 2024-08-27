@@ -11,7 +11,7 @@ XTerm*faceSize: 14
 !XTerm*foreground: #85ffbd
 !XTerm*cursorColor: #85ffbd
 
-!new theme setting
+!new theme setting [gruvbox]
 
 !hard contrast #1d2021
 XTerm*background: #282828 
@@ -41,7 +41,7 @@ XTerm*color14: #8ec07c
 !LightGrey + White
 XTerm*color7: #a89984
 XTerm*color15: #ebdbb2
-
+ 
 Sxiv*background: #ebdbb2
 Sxiv*foreground: #3c3836
 Sxiv*font: Hack-16;
