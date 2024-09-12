@@ -48,6 +48,8 @@ set guifont=hack:14
 set scrolloff=12
 set sts=2
 set wildcharm=<C-z>
+set gdefault
+set foldmethod=indent
 
 call plug#begin("$HOME/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'} 
@@ -55,6 +57,9 @@ call plug#begin("$HOME/.vim/plugged")
   Plug 'vifm/vifm.vim'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'tikhomirov/vim-glsl'
+  Plug 'whatyouhide/vim-gotham'
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
   if(&filetype == 'cpp')
     Plug 'bfrg/vim-cpp-modern'
     Plug 'Shougo/neosnippet.vim'
@@ -125,8 +130,6 @@ inoremap <M-a> <C-r>.
 nnoremap <C-j> 10j
 nnoremap <C-k> 10k
 
-nnoremap ,e :Explore<CR>
-
 command! -nargs=0 Sw w !sudo tee % > /dev/null
 command! Mingw read $HOME/mingw-includes.txt
 
@@ -136,10 +139,35 @@ nnoremap <F3> :CocCommand document.toggleInlayHint<CR>
 nnoremap ,f :<C-f>
 
 "browsing a file in subdirectory
-nnoremap ,b :e **/*<C-z><S-Tab>
-set wildignore+=build/*
+"this is very nice I hit ,e<filename><Tab> and booom! the file in some child
+"directory appears!!
 
-nnoremap <C-h> :bprev<CR>
-nnoremap <C-l> :bnext<CR>
+function ToggleNetrw()
+  if(&filetype == 'netrw')
+    Rexplore
+    normal `P
+  else
+    mark P
+    30 Explore
+  endif
+endfunction
+
+nnoremap ,e :e **/*<C-z><S-Tab>
+nnoremap ,b :call ToggleNetrw()<CR>
+nnoremap ,c :make<Space>
+nnoremap ,a :set arabic!<Cr>
+
+set wildignore+=*build/*,docs/*,.git/*
+
+nnoremap <M-n> :bnext<CR>
+nnoremap <M-p> :bprev<CR>
 "autocmd VimEnter * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Escape'
 "autocmd VimLeave * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Caps_Lock'
+
+"netrw setting
+let g:netrw_banner=0
+let g:netrw_menu=0
+let g:netrw_preview=0
+let g:netrw_liststyle=1
+let g:netrw_sort_by = "exten"
+"let g:netrw_chgwin=1
