@@ -61,5 +61,8 @@ nnoremap <M-;> mzA;<Esc>`z
 
 inoremap <M-,> <><Left>
 
+nnoremap <M-b> bcw{}<Esc>P
+inoremap <M-b> <Esc>bcw{}<Esc>P
+
 noremap <M-h> <Esc>:cprev<CR>
 noremap <M-l> <Esc>:cnext<CR>

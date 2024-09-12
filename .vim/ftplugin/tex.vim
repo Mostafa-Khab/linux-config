@@ -6,6 +6,7 @@ let b:did_ftplugin = 1
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
+inoremap <M-,> <Esc>bdwi\begin{<Esc>pa}\end{<Esc>pa}<Esc>F\i<CR><CR><Up>
 
 compiler tex
 
