@@ -116,11 +116,11 @@ nnoremap L $
 nnoremap n nzz
 nnoremap N Nzz
 
-nnoremap <C-j> ]]zz
-nnoremap <C-k> [[zz
+"nnoremap <C-j> ]]zz
+"nnoremap <C-k> [[zz
 
-nnoremap <M-j> }zz
-nnoremap <M-k> {zz
+nnoremap <M-j> /{<CR>zz
+nnoremap <M-k> ?{<CR>zz
 
 nnoremap <M-i> ".P
 nnoremap <M-a> ".p
@@ -135,8 +135,6 @@ command! Mingw read $HOME/mingw-includes.txt
 
 
 nnoremap <F3> :CocCommand document.toggleInlayHint<CR>
-
-nnoremap ,f :<C-f>
 
 "browsing a file in subdirectory
 "this is very nice I hit ,e<filename><Tab> and booom! the file in some child
@@ -156,11 +154,15 @@ nnoremap ,e :e **/*<C-z><S-Tab>
 nnoremap ,b :call ToggleNetrw()<CR>
 nnoremap ,c :make<Space>
 nnoremap ,a :set arabic!<Cr>
+nnoremap ,f :<C-f>
+nnoremap ,z :set foldenable!<CR>
+nnoremap ,s :%s/
+nnoremap ,w :w<CR>
+nnoremap ,t :!
 
 set wildignore+=*build/*,docs/*,.git/*
 
 nnoremap <M-n> :bnext<CR>
-nnoremap <M-p> :bprev<CR>
 "autocmd VimEnter * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Escape'
 "autocmd VimLeave * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Caps_Lock'
 
