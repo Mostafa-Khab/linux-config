@@ -52,6 +52,11 @@ function! Compile_Execute()
   call Execute()
 endfunction
 
+function! ShowDocs()
+  silent exec "!cppman ".expand('<cword>')
+  redraw!
+endfunction
+
 noremap <F9>  <Esc>:call Compile()<CR>
 noremap <F10> <Esc>:call Execute()<CR>
 noremap <F11> <Esc>:call Compile_Execute()<CR>
@@ -60,9 +65,13 @@ inoremap <M-;> <Esc>mzA;<Esc>`za
 nnoremap <M-;> mzA;<Esc>`z
 
 inoremap <M-,> <><Left>
+inoremap <M-k> <C-o>:call ShowDocs()<CR>
+noremap  <M-k> :call ShowDocs()<CR>
 
 nnoremap <M-b> bcw{}<Esc>P
 inoremap <M-b> <Esc>bcw{}<Esc>P
 
 noremap <M-h> <Esc>:cprev<CR>
 noremap <M-l> <Esc>:cnext<CR>
+
+iabbrev uint unsigned int

@@ -1,7 +1,6 @@
 function LatexStart()
   set filetype=tex
-  read /home/sasa/Templates/latex.tex
-  normal kdd
+  0 read $HOME/Templates/latex.tex
 endfunction
 
 autocmd BufNewFile *.tex call LatexStart()

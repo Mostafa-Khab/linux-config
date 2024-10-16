@@ -64,7 +64,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec xterm
 bindsym $mod+t exec xterm
 bindsym $mod+b exec rofi -show drun
-bindsym $mod+m exec screengrab
+bindsym $mod+g exec screengrab
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -211,7 +211,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   position top
-  status_command i3status /home/sasa/.config/i3status/config
+  status_command i3status ~/.config/i3status/config
 
   colors { 
     background #3c3836
@@ -227,11 +227,19 @@ bar {
 
 default_border pixel 2
 assign [class="Chromium"] 9
+assign [class="Google-chrome"] 9
+assign [class="Firefox"] 9
+assign [class="Gimp"] 8
 
 bindsym $mode+Shift+b border toggle
 
 for_window [class="gfx-test"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="Sxiv"] floating enable
+for_window [class="ffplay"] floating enable
+for_window [class="gnuplot_qt"] floating enable
+
 for_window [title="gfx-test"] floating enable
+
 
 bindsym $mod+c bar mode toggle

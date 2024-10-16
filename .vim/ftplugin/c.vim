@@ -10,3 +10,5 @@ inoremap <M-,> <><Left>
 
 noremap <M-h> <Esc>:cprev<CR>
 noremap <M-l> <Esc>:cnext<CR>
+
+iabbrev uint unsigned int

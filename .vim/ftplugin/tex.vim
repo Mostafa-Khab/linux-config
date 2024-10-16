@@ -43,3 +43,5 @@ inoremap <F9>  <Esc>:call<Space>CompileTex()<CR>
 inoremap <F10> <Esc>:call<Space>OpenPDF()<CR>
 inoremap <F11> <Esc>:call<Space>CompileTex_Execute()<CR>
 inoremap <F12> <Esc>:set<Space>arabic!<CR>
+
+cabbrev Arab 0read ~/Templates/arabic.tex

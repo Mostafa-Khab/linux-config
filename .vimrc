@@ -1,15 +1,15 @@
 function! Guard_func()
-  let base_name = expand("%:t:r")
-  let inc_guard = base_name . '_hpp'
+  "let base_name = expand("%:t:r")
+  let inc_guard = expand("%:t:r") . '_' . expand("%:e")
   call append(0, "#ifndef " . inc_guard)
   call append(1, "#define " . inc_guard)
   call append(line("$"), "#endif /* !" . inc_guard . " */")
   call cursor(1, 8)
-  exe 'normal g~$ kk'
+  exe 'normal gU$ kk'
   call cursor(2, 8)
-  exe 'normal g~$ kk'
+  exe 'normal gU$ kk'
   call cursor(line("$"), 8)
-  exe 'normal g~$ kk'
+  exe 'normal gU$ kk'
 endfunction
 
 command! Guard call Guard_func()
@@ -50,6 +50,7 @@ set sts=2
 set wildcharm=<C-z>
 set gdefault
 set foldmethod=indent
+set exrc
 
 call plug#begin("$HOME/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'} 
@@ -67,23 +68,25 @@ call plug#begin("$HOME/.vim/plugged")
   endif
 call plug#end()
 
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 
-highlight gfxNamespace guifg=#ebdbb2
-highlight gfxClass guifg=#689d6a
-highlight gfxFunction guifg=#98971a
-highlight gfxVariable guifg=#458588
+"highlight gfxNamespace guifg=#ebdbb2
+"highlight gfxClass guifg=#689d6a
+"highlight gfxFunction guifg=#98971a
+"highlight gfxVariable guifg=#458588
 
-if(&filetype == 'cpp')
+"if(&filetype == 'cpp')
   source $HOME/.vim/autoload/coc-config.vim
 
   imap <C-k>    <Plug>(neosnippet_expand_or_jump)
   smap <C-k>    <Plug>(neosnippet_expand_or_jump)
   xmap <C-k>    <Plug>(neosnippet_expand_target)
 
-endif
+"endif
 
 autocmd! BufNewFile,BufRead *.vert,*.frag set ft=glsl
+
 if has('gui_running')
   set guifont=Hack\ Nerd\ Font\ 14
 endif
@@ -109,7 +112,7 @@ vnoremap <M-p> "+p
 vnoremap <M-d> "_d
 vnoremap <M-c> "_c
 "for fast and ease sake
-inoremap jj <Esc>
+"inoremap jj <Esc>
 
 nnoremap H ^
 nnoremap L $
@@ -127,8 +130,8 @@ nnoremap <M-a> ".p
 inoremap <M-i> <C-r>.
 inoremap <M-a> <C-r>.
 
-nnoremap <C-j> 10j
-nnoremap <C-k> 10k
+nnoremap <C-j> <C-d>
+nnoremap <C-k> <C-u>
 
 command! -nargs=0 Sw w !sudo tee % > /dev/null
 command! Mingw read $HOME/mingw-includes.txt
@@ -140,6 +143,17 @@ nnoremap <F3> :CocCommand document.toggleInlayHint<CR>
 "this is very nice I hit ,e<filename><Tab> and booom! the file in some child
 "directory appears!!
 
+let g:docs_format="md"
+
+function CreateDocs(format)
+  if(!isdirectory("docs"))
+      echom "Create docs/ directory first"  
+      return
+  "   call mkdir("docs")
+  endif
+  exec "botright split docs/" . expand("%:r:p") . '.' . a:format
+endfunction
+
 function ToggleNetrw()
   if(&filetype == 'netrw')
     Rexplore
@@ -150,17 +164,27 @@ function ToggleNetrw()
   endif
 endfunction
 
+command! -nargs=* Make write | silent make <args> | redraw!
+command! -nargs=* Run  silent exec "!tmux split -p 30 '<args> | less'"
+
+" nnoremap ,b :call ToggleNetrw()<CR>
+nnoremap ,b :Lex<CR>
 nnoremap ,e :e **/*<C-z><S-Tab>
-nnoremap ,b :call ToggleNetrw()<CR>
-nnoremap ,c :make<Space>
+nnoremap ,c :Make 
 nnoremap ,a :set arabic!<Cr>
 nnoremap ,f :<C-f>
 nnoremap ,z :set foldenable!<CR>
 nnoremap ,s :%s/
 nnoremap ,w :w<CR>
-nnoremap ,t :!
+nnoremap ,r :Run 
+nnoremap ,t :silent !tmux split -p 30<CR>
+nnoremap ,d :call CreateDocs(g:docs_format)<CR>
+nnoremap ,q :q<CR>
+nnoremap ,x :cwindow
+nnoremap ,n :cnext
+nnoremap ,p :cprev
 
-set wildignore+=*build/*,docs/*,.git/*
+set wildignore+=*build/*,docs/*,.git/*,*.swp,*.bak
 
 nnoremap <M-n> :bnext<CR>
 "autocmd VimEnter * silent !xmodmap -e 'clear Lock' 'keycode 0x42 = Escape'
@@ -172,4 +196,11 @@ let g:netrw_menu=0
 let g:netrw_preview=0
 let g:netrw_liststyle=1
 let g:netrw_sort_by = "exten"
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_winsize=20
 "let g:netrw_chgwin=1
+
+if filereadable('.lvimrc')
+  source .lvimrc
+endif

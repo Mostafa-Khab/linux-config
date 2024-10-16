@@ -10,7 +10,7 @@
  
 # if you know what to do, it's better to configure your system with the help of these files (not install scripts)
 
-cp -n .vimrc .bashrc .tmux.conf $HOME
+cp -n .vimrc .bashrc .tmux.conf .zshrc $HOME
 cp -n vifmrc $HOME/.config/vifm/
 cp -n config.fish $HOME/.config/fish
 cp -n -r picom.conf i3/ i3status/ oh-my-posh-theme/ $HOME/.config
